@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
 </head>
 <body>
 
@@ -17,11 +18,11 @@
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
-
-
     ?>
 
-
+    <?php
+        require 'email_sender/form.html';
+    ?>
 
 </body>
 </html>
