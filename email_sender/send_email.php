@@ -47,24 +47,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $mail->Subject = $subject;
         $mail->Body = $message;
 
-        $mail->send();
-        echo 'Message has been sent';
 
-        header("Location: ../index.php");
+        if($mail->send()){
+            $succesMessage = urlencode("message has been sent successfully");
+            header("Location: ../index.php?Message=".$succesMessage);
+        }
+
     } catch (Exception $e) {
-        echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+        $failureMessage = urlencode("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
+        header("Location: ../index.php?Message=".$failureMessage);
     }
 }
-?>
-
-<form method="get">
-    <input type="submit" name="btnGoBack" value="Go back to previous page">
-</form>
-
-<?php
-    if(isset($_GET['btnGoBack'])){
-        header("Location: ../index.php");
-    }
 ?>
 </body>
 </html>

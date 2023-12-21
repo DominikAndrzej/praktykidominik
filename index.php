@@ -22,6 +22,10 @@
 
     <?php
         require 'email_sender/form.html';
+        if(isset($_GET['Message'])){
+
+            echo "<p>".$_GET['Message']."</p>";
+        }
     ?>
 
 </body>
