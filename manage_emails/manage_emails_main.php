@@ -1,5 +1,5 @@
 <?php
 include ("../global_functions/message_functions.php");
-include('send_email_form.html');
+include ('manage_emails_view.html');
 
 show_get_message();

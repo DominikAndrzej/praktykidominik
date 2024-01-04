@@ -11,16 +11,18 @@
 <body>
 
     <form method="post">
-        <input type="submit" name="btnGoToSendEmail" value="btnGoToSendEmail">
-        <input type="submit" name="btnGoToManageEmails" value="btnGoToManageEmails">
+        <input type="submit" name="btnGoToSendEmail" value="Send mail!">
+        <input type="submit" name="btnGoToManageEmails" value="Manage Emails">
     </form>
 
     <?php
+        include('global_functions/navigation_functions.php');
+
         if(array_key_exists('btnGoToSendEmail', $_POST)){
             go_to_send_email();
         }
-        function go_to_send_email() {
-            header('Location: /email_sender/send_email_main.php');
+        if(array_key_exists('btnGoToManageEmails', $_POST)){
+            go_to_manage_emails();
         }
     ?>
 

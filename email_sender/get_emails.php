@@ -25,6 +25,7 @@ try {
             echo "there aren't any recipients";
         }
 
+        $conn = null;
     } else {
         echo "there are some problems with database connection, check code for details";
     }
