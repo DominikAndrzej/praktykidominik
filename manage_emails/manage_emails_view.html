@@ -9,6 +9,10 @@
     <title>Manage emails</title>
 </head>
 <body>
+<form action="../global/navigation/nav_buttons.php" method="post">
+    <input type="submit" name="btnGoToIndex" value="Back">
+</form>
+
 <h2>Add Recipient</h2>
 <form action="btn_add_email.php" method="post">
     <input type="text" name="emailToAdd" placeholder="email">
@@ -18,6 +22,22 @@
     <input type="submit" name="btnAddEmail" value="Add">
 </form>
 <div id="emailsToManage"></div>
+
+<script>
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest();
+    } else {
+        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById('emailsToManage').innerHTML = this.responseText;
+        }
+    }
+    xmlhttp.open("POST", "get_emails.php", true);
+    xmlhttp.send();
+
+</script>
 
 </body>
 </html>
