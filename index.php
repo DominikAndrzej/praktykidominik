@@ -1,30 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
+    <title>Main page</title>
 </head>
 <body>
 
+    <form method="post">
+        <input type="submit" name="btnGoToSendEmail" value="btnGoToSendEmail">
+        <input type="submit" name="btnGoToManageEmails" value="btnGoToManageEmails">
+    </form>
+
     <?php
-        $servername = "localhost";
-        $username = "praktykidominik_base";
-        $password = "praktykidominik";
-
-        try {
-            $conn = new PDO("mysql:host=$servername;dbname=praktykidominik_base", $username, $password);
-
-            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            echo "Connected successfully";
-        } catch(PDOException $e) {
-            echo "Connection failed: " . $e->getMessage();
+        if(array_key_exists('btnGoToSendEmail', $_POST)){
+            go_to_send_email();
         }
-    ?>
-
-    <?php
-        require 'email_sender/form.html';
-        if(isset($_GET['Message'])){
-
-            echo "<p>".$_GET['Message']."</p>";
+        function go_to_send_email() {
+            header('Location: /email_sender/send_email_main.php');
         }
     ?>
 
