@@ -21,7 +21,10 @@
 
     <input type="submit" name="btnAddEmail" value="Add">
 </form>
-<div id="emailsToManage"></div>
+
+<div id="emailsToManage">
+
+</div>
 
 <script>
     if (window.XMLHttpRequest) {
@@ -34,7 +37,7 @@
             document.getElementById('emailsToManage').innerHTML = this.responseText;
         }
     }
-    xmlhttp.open("POST", "get_emails.php", true);
+    xmlhttp.open("POST", "show_emails_to_manage.php", true);
     xmlhttp.send();
 
 </script>
