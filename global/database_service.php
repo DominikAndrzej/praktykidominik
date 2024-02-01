@@ -72,6 +72,42 @@ function get_emails(): ?array{
     return null;
 }
 
+function delete_email_by_email($email){
+    include '../database_config.php';
+
+    try {
+        if (isset($servername, $username, $password, $databasename)) {
+            //establishing connection
+            $conn = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
+            $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+            $query = "DELETE FROM `recipients` WHERE `email` = :email";
+            $queryRun = $conn->prepare($query);
+
+            $data = [
+                ':email' => $email,
+            ];
+
+            $queryExecute = $queryRun->execute($data);
+
+            $conn = null;
+
+            if($queryExecute)
+            {
+                header('Location: manage_emails_main.php?Message=' . "Deleted Successfully");
+            }
+            else
+            {
+                header('Location: manage_emails_main.php?Message=' . "Not deleted");
+            }
+            exit(0);
+
+        }
+    } catch (PDOException $e) {
+        header('Location: manage_emails_main.php?Message=' . "Database failure: " . $e->getMessage());
+        exit(0);
+    }
+}
 function add_email_user($emailUserName, $emailUserSurname, $email)
 {
     include '../database_config.php';

@@ -19,15 +19,26 @@ function createTableElement(array $tableHeaders, array $rowsData = NULL)
     echo "</tr>";
 
     foreach ($rowsData as $row) {
+        $name = $row["name"];
+        $surname = $row["surname"];
+        $email = $row["email"];
+
         echo "<tr>";
         echo "<td>";
-        echo $row["name"];
+        echo $name;
         echo "</td>";
         echo "<td>";
-        echo $row["surname"];
+        echo $surname;
         echo "</td>";
         echo "<td>";
-        echo $row["email"];
+        echo $email;
+        echo "</td>";
+        echo "<td>";
+        echo
+        "
+        <button onclick='requestDelete(\"$email\")' style='background-color: mediumaquamarine; color: darkred; font-weight: bold'>
+        delete</button>
+        ";
         echo "</td>";
         echo "</tr>";
     }
@@ -41,4 +52,5 @@ array_shift($columns_names);
 $emails = get_emails();
 
 createTableElement($columns_names, $emails);
+exit(0);
 
