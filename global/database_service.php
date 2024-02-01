@@ -72,42 +72,42 @@ function get_emails(): ?array{
     return null;
 }
 
-function add_email_user($emailUserName, $emailUserSurname, $emailToAdd)
+function add_email_user($emailUserName, $emailUserSurname, $email)
 {
     include '../database_config.php';
-    class ReturnStatement
-    {
-        public string $message;
-        public bool $ifSucceded;
-
-        public function __construct(bool $ifSucceded, $message)
-        {
-            $this->message = $message;
-            $this->ifSucceded = $ifSucceded;
-        }
-    }
 
     try {
         if (isset($servername, $username, $password, $databasename)) {
             //establishing connection
             $conn = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
-
-
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-            $addEmail = $conn->prepare("INSERT IGNORE INTO recipients (`name`, `surname`, `email`) VALUES ('$emailUserName','$emailUserSurname','$emailToAdd')");
-            $addEmail->execute();
+            $query = "INSERT INTO recipients (`name`, `surname`, `email`) VALUES (:email_user_name, :email_user_surname, :email)";
+            $queryRun = $conn->prepare($query);
+
+            $data = [
+                ':email_user_name' => $emailUserName,
+                ':email_user_surname' => $emailUserSurname,
+                ':email' => $email,
+            ];
+
+            $queryExecute = $queryRun->execute($data);
 
             $conn = null;
 
-            return new ReturnStatement(true, "new email user added succesfully");
+            if($queryExecute)
+            {
+                header('Location: manage_emails_main.php?Message=' . "Inserted Successfully");
+            }
+            else
+            {
+                header('Location: manage_emails_main.php?Message=' . "Not Inserted");
+            }
+            exit(0);
 
-        } else {
-            return new ReturnStatement(false, "there are some problems with database connection, check code for details");
         }
-
     } catch (PDOException $e) {
-        return new ReturnStatement(false, "Connection to database failed: " . $e->getMessage());
-
+        header('Location: manage_emails_main.php?Message=' . "Database failure: " . $e->getMessage());
+        exit(0);
     }
 }

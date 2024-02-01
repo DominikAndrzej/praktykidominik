@@ -9,7 +9,7 @@ include '../global/database_service.php';
  *
  * do każdego wiersza dodaje funkcję edycji i usuwania z bazy
  */
-function createTableElement(array $tableHeaders, array $rows = NULL)
+function createTableElement(array $tableHeaders, array $rowsData = NULL)
 {
     echo "<table>";
     echo "<tr>";
@@ -18,9 +18,17 @@ function createTableElement(array $tableHeaders, array $rows = NULL)
     }
     echo "</tr>";
 
-    foreach ($rows as $row) {
+    foreach ($rowsData as $row) {
         echo "<tr>";
-
+        echo "<td>";
+        echo $row["name"];
+        echo "</td>";
+        echo "<td>";
+        echo $row["surname"];
+        echo "</td>";
+        echo "<td>";
+        echo $row["email"];
+        echo "</td>";
         echo "</tr>";
     }
 
@@ -32,5 +40,5 @@ array_shift($columns_names);
 
 $emails = get_emails();
 
-createTableElement($columns_names);
+createTableElement($columns_names, $emails);
 
