@@ -40,21 +40,28 @@
 
         let data = encodeURIComponent(email)
         xmlhttp.send('email=' + data);
+
+        loadEmailsTable();
     }
 
-    if (window.XMLHttpRequest) {
-        xmlhttp = new XMLHttpRequest();
-    } else {
-        xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-    }
+    function loadEmailsTable() {
 
-    xmlhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
-            document.getElementById('emailsToManage').innerHTML = this.responseText;
+        if (window.XMLHttpRequest) {
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
         }
+
+        xmlhttp.onreadystatechange = function () {
+            if (this.readyState == 4 && this.status == 200) {
+                document.getElementById('emailsToManage').innerHTML = this.responseText;
+            }
+        }
+        xmlhttp.open("POST", "show_emails_to_manage.php", true);
+        xmlhttp.send();
     }
-    xmlhttp.open("POST", "show_emails_to_manage.php", true);
-    xmlhttp.send();
+    loadEmailsTable();
+
 </script>
 
 </body>
