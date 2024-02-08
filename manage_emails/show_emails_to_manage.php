@@ -36,7 +36,7 @@ function createTableElement(array $tableHeaders, array $rowsData = NULL)
         echo "<td>";
         echo
         "
-        <button onclick='requestDelete(\"$email\")' style='background-color: mediumaquamarine; color: darkred; font-weight: bold'>
+        <button id='deleteButton' onclick='requestDelete(\"$email\")' style='background-color: mediumaquamarine; color: darkred; font-weight: bold'>
         delete</button>
         ";
         echo "</td>";

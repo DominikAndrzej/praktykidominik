@@ -92,20 +92,11 @@ function delete_email_by_email($email){
 
             $conn = null;
 
-            if($queryExecute)
-            {
-                header('Location: manage_emails_main.php?Message=' . "Deleted Successfully");
-            }
-            else
-            {
-                header('Location: manage_emails_main.php?Message=' . "Not deleted");
-            }
-            exit(0);
-
+            return $queryExecute;
         }
     } catch (PDOException $e) {
-        header('Location: manage_emails_main.php?Message=' . "Database failure: " . $e->getMessage());
-        exit(0);
+//        header('Location: manage_emails_main.php?Message=' . "Database failure: " . $e->getMessage());
+        return null;
     }
 }
 function add_email_user($emailUserName, $emailUserSurname, $email)
@@ -131,19 +122,10 @@ function add_email_user($emailUserName, $emailUserSurname, $email)
 
             $conn = null;
 
-            if($queryExecute)
-            {
-                header('Location: manage_emails_main.php?Message=' . "Inserted Successfully");
-            }
-            else
-            {
-                header('Location: manage_emails_main.php?Message=' . "Not Inserted");
-            }
-            exit(0);
-
+            return $queryExecute;
         }
     } catch (PDOException $e) {
-        header('Location: manage_emails_main.php?Message=' . "Database failure: " . $e->getMessage());
-        exit(0);
+//        print "Error: " . $e->getMessage();
+        return null;
     }
 }
