@@ -1,6 +1,6 @@
 <?php
-include '../database_config.php';
-include '../global/database_service.php';
+include '../../database_config.php';
+include '../../global/database_service.php';
 
 /**
  * tworzy tabele w postaci elementów html poprzez funkcje "echo",

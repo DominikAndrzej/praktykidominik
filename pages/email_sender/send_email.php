@@ -5,9 +5,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 //use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-include '../vendor/phpmailer/phpmailer/src/SMTP.php';
-include '../vendor/phpmailer/phpmailer/src/Exception.php';
-include '../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+include '../../vendor/phpmailer/phpmailer/src/SMTP.php';
+include '../../vendor/phpmailer/phpmailer/src/Exception.php';
+include '../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $subject = htmlspecialchars($_POST["subject"]);

@@ -5,37 +5,61 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/water.css@2/out/water.css">
-    <link rel="stylesheet" href="../global/main.css">
+    <link rel="stylesheet" href="../../global/main.css" type="text/css">
+    <link rel="icon" type="image/x-icon" href="/assets/favicon.ico">
     <title>Manage emails</title>
 </head>
 <body>
-<script src="../jquery.js" type="text/javascript"> </script>
-<script src="../global/main.js" type="text/javascript"> </script>
 
-<form action="../global/navigation/nav_buttons.php" method="post">
+<script src="../../jquery.js" type="text/javascript"> </script>
+<script src="../../global/main.js" type="text/javascript"> </script>
+
+<form action="../../global/navigation/nav_buttons.php" method="post">
     <input type="submit" name="btnGoToIndex" value="Back">
 </form>
 
+<!--<h2>Add Recipient</h2>-->
+<!--<form action="btn_add_email.php" method="post">-->
+<!--    <input type="text" name="emailToAdd" placeholder="email">-->
+<!--    <input type="text" name="emailUserName" placeholder="name">-->
+<!--    <input type="text" name="emailUserSurname" placeholder="surname">-->
+
+<!--    <input type="submit" name="btnAddEmail" id="btnAddEmail" value="Add">-->
+<!--</form>-->
+
 <h2>Add Recipient</h2>
-<form action="btn_add_email.php" method="post">
+<form id="addEmailForm">
     <input type="text" name="emailToAdd" placeholder="email">
     <input type="text" name="emailUserName" placeholder="name">
     <input type="text" name="emailUserSurname" placeholder="surname">
 
-    <input type="submit" name="btnAddEmail" id="btnAddEmail" value="Add">
+    <input type="button" name="btnAddEmail" id="btnAddEmail" value="Add">
 </form>
 
 <div id="emailsToManage">
 
 </div>
 
+<div id="osiem">
+</div>
+
 <script>
 
-    const btnAddEmail = document.getElementById('btnAddEmail');
-    btnAddEmail.addEventListener('click', () => {
-        informNote('add');
-    })
+    // const btnAddEmail = document.getElementById('btnAddEmail');
+    // btnAddEmail.addEventListener('click', () => {
+    //     informNote('add');
+    // })
+    $('#osiem').append('aaaaa');
+
+    $('#btnAddEmail').on('click', function(){
+        $.ajax({
+            url: 'btn_add_email.php',
+            type: 'POST',
+            data: $("#addEmailForm").serialize(),
+            success:function(response){
+            }
+        })
+     });
 
     function requestDelete(email) {
 

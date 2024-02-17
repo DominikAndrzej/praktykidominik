@@ -6,6 +6,7 @@
  * css class
  */
 function informNote (noteBody, styleClass = '') {
+
     $('body').append('<div class="noteBody ' + styleClass + '">' + noteBody + '</div>');
 
     $('.noteBody').fadeIn();

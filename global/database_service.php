@@ -1,11 +1,12 @@
 <?php
+
 function get_columns_names($tableName): ?array {
-    include '../database_config.php';
+    include '../../database_config.php';
 
     try {
-        if (isset($servername, $username, $password)) {
+        if (isset($servername, $username, $password, $databasename)) {
             //establishing connection
-            $conn = new PDO("mysql:host=$servername;dbname=$username", $username, $password);
+            $conn = new PDO("mysql:host=$servername;dbname=$databasename", $username, $password);
 
             $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
@@ -36,7 +37,7 @@ function get_columns_names($tableName): ?array {
     return null;
 }
 function get_emails(): ?array{
-    include '../database_config.php';
+    include '../../database_config.php';
 
     try {
         if (isset($servername, $username, $password, $databasename)) {
@@ -73,7 +74,7 @@ function get_emails(): ?array{
 }
 
 function delete_email_by_email($email){
-    include '../database_config.php';
+    include '../../database_config.php';
 
     try {
         if (isset($servername, $username, $password, $databasename)) {
@@ -101,7 +102,7 @@ function delete_email_by_email($email){
 }
 function add_email_user($emailUserName, $emailUserSurname, $email)
 {
-    include '../database_config.php';
+    include '../../database_config.php';
 
     try {
         if (isset($servername, $username, $password, $databasename)) {
