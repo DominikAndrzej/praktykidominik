@@ -5,7 +5,7 @@
       <webServer id="efdc53f6-fb79-46ee-a265-c9eb82fc2dce" name="geninhost.com" url="http://geninhost.com">
         <fileTransfer rootFolder="/domains/dominik.geninhost.com/public_html" host="geninhost.com" port="21">
           <advancedOptions>
-            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" showHiddenFiles="true" />
           </advancedOptions>
         </fileTransfer>
       </webServer>

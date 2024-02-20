@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="assessment_global/main.css" type="text/css">
+    <title>Assessment Form</title>
+</head>
+<body>
+
+<div class="form-container">
+    <form id="assessment_info_form">
+        <!--City-->
+        <input type="text" placeholder="Miasto" name="city">
+        <br>
+
+        <!--Street Name-->
+        <input type="text" placeholder="Nazwa ulicy" name="street-name">
+        <br>
+
+        <!--Meterage-->
+        <input type="number" placeholder="Metraż (m2)" name="meterage">
+        <br>
+
+        <!--How many rooms-->
+        <input type="number" placeholder="Liczba pokojów" name="rooms-qty">
+        <br>
+
+        <!--On which floor is the apartment-->
+        <input type="number" placeholder="Numer piętra" name="which-floor">
+        <br>
+
+        <!--How may floors are in the building-->
+        <input type="number" placeholder="Liczba pięter w budynku" name="floors-qty">
+        <br>
+
+        <!--standard level option select-->
+        <label for="standard-level">Poziom standardu</label>
+        <select name="standard-level" id="standard-level">
+
+            <option name="standard-0">Niski</option>
+            <option name="standard-1">Sredni</option>
+            <option name="standard-2">Wysoki</option>
+            <option name="standard-3">Bardzo wysoki</option>
+        </select>
+        <br>
+
+        <!--additional information radio button multiple select-->
+        <fieldset>
+            <legend>
+                Dodatkowe informacje
+            </legend>
+            <div class="additionalInfoBody">
+
+                <input type="radio" id="balcony" name="balcony">
+                <label for="balcony">Balkon</label>
+
+                <input type="radio" id="store-room" name="store-room">
+                <label for="store-room">Komorka lokatorska</label>
+
+                <input type="radio" id="parking-lot" name="parking-lot">
+                <label for="parking-lot">Miejsce parkingowe</label>
+
+                <input type="radio" id="lift" name="lift">
+                <label for="lift">Winda</label>
+
+            </div>
+        </fieldset>
+        <br>
+
+        <!--Reason of assessment-->
+        <fieldset>
+            <legend>
+                Powod wyceny
+            </legend>
+            <textarea id="assessment-reason" name="assessment-reason" rows="4" cols="50"></textarea>
+
+        </fieldset>
+
+        <!--Submit button-->
+        <input type="button" value="Potwierdz" id="submit">
+    </form>
+
+<!--response from server-->
+    <div id="form-message"></div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+<script>
+    $("#submit").on('click', function (){
+        $.ajax({
+            url: 'https://dominik.geninhost.com/apartment_assessment_system/assessment_pages/apartment_info_form/form_handler.php',
+            type: 'POST',
+            data: $("#assessment_info_form").serialize(),
+            success:function(response){
+                $('#form-message').text(response);
+            }
+        })
+    })
+</script>
+
+
+</body>
+</html>
